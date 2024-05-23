@@ -2,4 +2,6 @@
     <string name="app_name">Diana</string>
     <string name="title_activity_main2">MainActivity2</string>
     <string name="title_activity_page4">page4</string>
+    <string name="title_activity_about">AboutActivity</string>
+    <string name="title_activity_contact2">ContactActivity2</string>
 </resources>
