@@ -8,13 +8,18 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Lock
@@ -31,12 +36,14 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -96,90 +103,112 @@ fun login(
         verticalArrangement = Arrangement.Center
 
     ) {
-        Button(
-            onClick = {
-                Home.startActivity(Intent(Home, MainActivity::class.java))
-            },
-            colors = ButtonDefaults.buttonColors(Color(0xff931c44)),
-            shape = RoundedCornerShape(8.dp),
-            //shape = RectangleShape,
+        Row {
+            Button(
+                onClick = {
+                    Home.startActivity(Intent(Home, MainActivity::class.java))
+                },
+                colors = ButtonDefaults.buttonColors(Color(0xff931c44)),
+                shape = RoundedCornerShape(8.dp),
+                //shape = RectangleShape,
 
-        ) {
-            Text("Home")
+            ) {
+                Text("Home")
 
+            }
+            Spacer(
+                modifier = Modifier
+                    .width(20.dp)
+            )
+            Button(
+                onClick = {
+                    About.startActivity(Intent(About, AboutActivity::class.java))
+                },
+                colors = ButtonDefaults.buttonColors(Color(0xff931c44)),
+                shape = RoundedCornerShape(8.dp),
+                //shape = RectangleShape,
+
+            ) {
+                Text("About")
+
+            }
+            Spacer(
+                modifier = Modifier
+                    .width(20.dp)
+            )
+
+            Button(
+                onClick = {
+                    Contact.startActivity(Intent(Contact, ContactActivity2::class.java))
+                },
+                colors = ButtonDefaults.buttonColors(Color(0xff931c44)),
+                shape = RoundedCornerShape(8.dp),
+                //shape = RectangleShape,
+
+            ) {
+                Text("Contact")
+
+            }
+            Spacer(
+                modifier = Modifier
+                    .width(20.dp)
+            )
+            Button(
+                onClick = {
+                    Login.startActivity(Intent(Login, LoginActivity::class.java))
+                },
+                colors = ButtonDefaults.buttonColors(Color(0xff931c44)),
+                shape = RoundedCornerShape(8.dp),
+                //shape = RectangleShape,
+
+            ) {
+                Text("Login")
+
+            }
         }
-        Button(
-            onClick = {
-                About.startActivity(Intent(About, AboutActivity::class.java))
-            },
-            colors = ButtonDefaults.buttonColors(Color(0xff931c44)),
-            shape = RoundedCornerShape(8.dp),
-            //shape = RectangleShape,
+        Spacer(
+            modifier = Modifier
+                .height(20.dp)
+        )
 
-        ) {
-            Text("About")
-
-        }
-
-        Button(
-            onClick = {
-                Contact.startActivity(Intent(Contact, ContactActivity2::class.java))
-            },
-            colors = ButtonDefaults.buttonColors(Color(0xff931c44)),
-            shape = RoundedCornerShape(8.dp),
-            //shape = RectangleShape,
-
-        ) {
-            Text("Contact")
-
-        }
-        Button(
-            onClick = {
-                Login.startActivity(Intent(Login, LoginActivity::class.java))
-            },
-            colors = ButtonDefaults.buttonColors(Color(0xff931c44)),
-            shape = RoundedCornerShape(8.dp),
-            //shape = RectangleShape,
-
-        ) {
-            Text("Login")
-
-        }
         Image(
             modifier = Modifier
-                .size(100.dp),
+                .size(100.dp)
+                .clip(RoundedCornerShape(5.dp))
+            .border(2.dp, Color(0xff369f9c)),
             painter = painterResource(id = R.drawable.index8),
-            contentDescription = ""/*null, "describe"*/
+            contentDescription = "",/*null, "describe"*/
+            alignment = Alignment.Center
         )
         Text(
             text = "LOGIN",
             Modifier,
-            fontFamily = FontFamily.Monospace,
-            fontSize = 33.sp,
+            fontFamily = FontFamily.SansSerif,
+            fontSize = 58.sp,
             color = Color(0xfffafafa),
             textAlign = TextAlign.Center,
         )
         Text(
             text = "Come Back With Your ID",
             Modifier,
-            fontFamily = FontFamily.Monospace,
+            fontFamily = FontFamily.SansSerif,
             fontWeight = FontWeight.Bold,
-            fontSize = 26.sp,
+            fontSize = 28.sp,
             color = Color(0xff369f9c),
             textAlign = TextAlign.Center,
         )
         Text(
             text = "For easy, fast and secure login",
             Modifier,
-            fontFamily = FontFamily.Monospace,
-
-            fontSize = 12.sp,
+            fontFamily = FontFamily.SansSerif,
+            fontSize = 14.sp,
             color = Color(0xff369f9c),
             textAlign = TextAlign.Center,
         )
         Column(
             modifier = Modifier
-                .fillMaxSize()
+                .padding(6.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             OutlinedTextField(
                 username, { username = it },
@@ -187,10 +216,7 @@ fun login(
                 label = {
                     Text(
                         text = "Username",
-                        modifier = Modifier
-                            .background(color = Color(0xff14774a)),
-
-
+                        color= Color(0xffc92df1)
                         )
                 }
             )
@@ -199,25 +225,34 @@ fun login(
                 onValueChange = { password = it },
                 leadingIcon = { Icon(imageVector = Icons.Default.Lock, contentDescription = null) },
                 label = {
-                    Text(
-                        text = "Password",
-                        modifier = Modifier
-                            .background(color = Color(0xff14774a))
-                    )
-                }
+                    Text("Password",
+                        color= Color(0xffc92df1)
+                        )
+                },
+
+                visualTransformation = PasswordVisualTransformation()
             )
-            Button(
+            Column(
+                Modifier
+                    .padding(6.dp)
+                    .fillMaxSize(10F)
+                    .fillMaxWidth(50F),
+
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center
+            ){
+                Button(
                 onClick = {
                     submit.startActivity(Intent(submit, MainActivity::class.java))
                 },
-                colors = ButtonDefaults.buttonColors(Color(0xff2df1a5)),
                 shape = RoundedCornerShape(8.dp),
                 //shape = RectangleShape,
-                
+
 
             ) {
                 Text("Login")
-            }
+            }}
+
         }
     }
 }

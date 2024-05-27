@@ -5,4 +5,5 @@
     <string name="title_activity_about">AboutActivity</string>
     <string name="title_activity_contact2">ContactActivity2</string>
     <string name="title_activity_login">Login</string>
+    <string name="title_activity_scrolling2">scrollingActivity2</string>
 </resources>
